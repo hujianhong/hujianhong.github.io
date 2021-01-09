@@ -128,21 +128,16 @@
 
 
 <!-- Baidu Tongji -->
-<!--{% if site.ba_track_id %}-->
-<!--<script>-->
-<!--    // dynamic User by Hux-->
-<!--    var _baId = '{{ site.ba_track_id }}';-->
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?f365358c41fa1f69f97f2c0c5d3275a8";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
 
-<!--    // Originial-->
-<!--    var _hmt = _hmt || [];-->
-<!--    (function() {-->
-<!--      var hm = document.createElement("script");-->
-<!--      hm.src = "//hm.baidu.com/hm.js?" + _baId;-->
-<!--      var s = document.getElementsByTagName("script")[0];-->
-<!--      s.parentNode.insertBefore(hm, s);-->
-<!--    })();-->
-<!--</script>-->
-<!--{% endif %}-->
 
 
 <!-- Side Catalog -->
