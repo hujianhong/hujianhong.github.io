@@ -1,11 +1,11 @@
 # Site settings
-title: 艾柏特思的博客
-SEOTitle: 艾柏特思的博客 | ibytes blog
+title: 大铁憨的博客
+SEOTitle: 大铁憨的博客 | ibytes blog
 header-img: img/claud-richmond-R0DO3mKfijg-unsplash.jpg
 email: hunter@ibytes.net
-description: "艾柏特思的博客定位为IT技术博客站，博客内容主要涉及编程语言、推荐算法、数据挖掘等方面，分享实用的学习和开发资料"
-keyword: "ibytes, 艾柏特思, blog, 博客, Java, 编程, coding, 比赛"
-url: "http://wwww.ibytes.net/"              # your host, for absolute URL
+description: "大铁憨的博客定位为IT技术博客站，博客内容主要涉及编程语言、推荐算法、数据挖掘等方面，分享实用的学习和开发资料"
+keyword: "ibytes, 大铁憨, blog, 博客, Java, 编程, coding, 比赛"
+url: "http://wwww.datiehan.net/"              # your host, for absolute URL
 baseurl: ""                             # for example, '/blog' if your blog hosted on 'host/blog'
 
 # Publish posts or collection documents with a future date.
@@ -71,7 +71,7 @@ netease_comment: false
 
 # Google Analytics
 ga_track_id: 'UA-49627206-1'            # Format: UA-xxxxxx-xx
-ga_domain: ibytes.net
+ga_domain: datiehan.com
 
 
 
