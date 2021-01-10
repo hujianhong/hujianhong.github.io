@@ -2,7 +2,7 @@
 layout:     post
 title:      第三届阿里中间件性能挑战赛 初赛总结
 date:       2017-07-21
-author:     胡建洪
+author:     大铁憨
 header-img: img/stan-y--g67_YOp6O4-unsplash.jpg
 catalog: true
 tags:
@@ -239,3 +239,7 @@ public class SnappyReader implements IReader {
 代码越优化越简单，往往简单的代码比复杂的代码可读性高，性能也相对来说比较高。
 
 代码已经开源在GitHub上了，需要的同学可以参考下：[初赛代码](https://github.com/hujianhong/open-messaging-contest.git "初赛代码")
+
+------------------
+如果对大铁憨的文章感兴趣，也欢迎关注大铁憨的微信公众号，微信搜索"大铁憨"，或者微信扫描下面的二维码。
+![大铁憨](/img/qrcode_for_gh_datiehanhan.jpg)

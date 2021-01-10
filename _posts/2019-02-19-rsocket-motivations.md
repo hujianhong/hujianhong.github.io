@@ -2,7 +2,7 @@
 layout:     post
 title:      提出RSocket的动机(译)
 date:       2019-02-19
-author:     胡建洪
+author:     大铁憨
 header-img: img/post-bg-universe.jpg
 catalog: true
 tags:
@@ -242,3 +242,8 @@ HTTP / 2意味着更好的HTTP / 1.1，主要用于网站浏览器中的文档�
 
 ### 原文链接
 [http://rsocket.io/docs/Motivations](http://rsocket.io/docs/Motivations)
+
+
+------------------
+如果对大铁憨的文章感兴趣，也欢迎关注大铁憨的微信公众号，微信搜索"大铁憨"，或者微信扫描下面的二维码。
+![大铁憨](/img/qrcode_for_gh_datiehanhan.jpg)

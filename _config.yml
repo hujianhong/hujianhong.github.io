@@ -77,8 +77,8 @@ ga_domain: datiehan.com
 
 # Sidebar settings
 sidebar: true                           # whether or not using Sidebar.
-sidebar-about-description: "不仅要低头走路，更要抬头看路"
-sidebar-avatar: /img/avatar-me.jpg      # use absolute URL, seeing it's used in both `/` and `/about/`
+sidebar-about-description: "人生如棋，日拱一卒"
+sidebar-avatar: /img/qrcode_for_gh_datiehanhan.jpg      # use absolute URL, seeing it's used in both `/` and `/about/`
 
 
 
@@ -104,6 +104,9 @@ friends: [
     {
         title: "我的GitHub",
         href: "https://github.com/hujianhong"
+    },{
+        title: "我的Gitee",
+        href: "http://gitee.com/hujianhong"
     },{
         title: "我的旅行",
         href: "http://travel.ibytes.net"
