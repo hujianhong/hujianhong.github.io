@@ -16,7 +16,7 @@ tags:
 Prometheus是一个开源的监控和报警系统，依赖少，功能齐全，于2016年加入CNCF，广泛用于 Kubernetes集群的监控系统中，2018年8月成为继K8S之后第二个毕业的项目。基于Prometheus可以很轻松且快速的构建一套包含监控指标的抓取、存储、查询以及告警的完整监控系统。单个的Prometheus实例就能实现每秒上百万的采样，同时支持对于采集数据的快速查询。
 
 ## 整体架构
-Prometheus的整体架构及其一些生态系统组件如下图所示， 显然Prometheus的优秀特性的实现都离不开一个其内部设计优良的时序数据库TSDB的支撑，这个TSDB整体上是一个LSM结构，包括WAL、memtable、文件等部分。
+Prometheus的整体架构及其一些生态系统组件如下图所示， Prometheus的优秀特性的实现都离不开一个其内部设计优良的时序数据库TSDB的支持。这个TSDB整体上是一个LSM结构，包括WAL、memtable、文件等部分。
 ![image.png](/img/2021-01-12/prometheus_architecture.png)
 
 Prometheus本地存储TSDB的核心设计包括block和WAL两个，其中，block包含chunk，index，meta.json，tombstones等。Prometheus使用时间作为一级索引，将数据分为多个block，新创建的block的时间范围默认为2小时。同时会通过compaction异步将这些block以步长为3的方式进行合并，即将2小时的block合并为6小时、6小时的block合并成18小时这样的大block。
@@ -144,7 +144,7 @@ Prometheus的文件最复杂或者包含内容最多的莫过于index文件，�
 
 
 ## 总结
-Prometheus主要面向的是云原生下的APM场景，整体架构清晰明了，但由于是单机架构，导致无法存储长周期的数据，单机吞吐有限。整体上来说，Prometheus文件格式设计比较巧妙，也还有一定的优化空间，比如倒排索引部分的series的ID列表可以使用位图或者变长整型来存储ID列表，可以进一步节省磁盘存储空间。对于Prometheus无法存储长周期的数据和单机吞吐有限的问题，开源社区提供了很多针对Prometheus的长期存储（Long-term storage）解决方案方案, 包括Thanos、VictoriaMetrics、M3、Cortex等。 
+Prometheus主要面向的是云原生下的APM场景，整体架构清晰明了，但由于是单机架构，导致无法存储长周期的数据，单机吞吐有限。整体上来说，虽然 Prometheus 文件格式设计比较巧妙，也还有一定的优化空间，比如倒排索引部分的series的ID列表可以使用位图或者变长整型来存储ID列表，可以进一步节省磁盘存储空间。对于Prometheus无法存储长周期的数据和单机吞吐有限的问题，开源社区提供了很多针对Prometheus的长期存储（Long-term storage）解决方案方案, 包括Thanos、VictoriaMetrics、M3、Cortex等。 
 
 ------------------
 如果对大铁憨的文章感兴趣，也欢迎关注大铁憨的微信公众号，微信搜索"大铁憨"，或者微信扫描下面的二维码。
