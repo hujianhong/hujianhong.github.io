@@ -58,12 +58,12 @@ tags:
 ---------------------------------------
 如果您对港股打新感兴趣或者心动了，可以加我微信: bigtiehanhan，进行交流。也欢迎使用以下我的链接注册和开通港股证券账号。
 
-* 华盛：https://hd.hstong.com/invite/2020/accept?invite=WEYI9
-* 华泰：https://gb.zhangle.com/views/new-customer-gift/index.htm?ciphertext=605e251572fed649a1547438bb6828d9f619bdd0b0e5796e423afd1ea96bddc019b6d4ec948fea0bd0a5598fd10095a62dd267ba149ece695a82eebc970e5d2d
+* 华盛：[点击开户](https://hd.hstong.com/invite/2020/accept?invite=WEYI9)
+* 华泰：[点击开户](https://gb.zhangle.com/views/new-customer-gift/index.htm?ciphertext=605e251572fed649a1547438bb6828d9f619bdd0b0e5796e423afd1ea96bddc019b6d4ec948fea0bd0a5598fd10095a62dd267ba149ece695a82eebc970e5d2d)
 * 老虎: 可以单独加大铁憨微信（bigtiehanhan）获取邀请链接；
-* 富途：https://growth1.futunn.com/common-invite/temp/61?code=28ad6a302facdf13683451eaf8315a6e&channel=535&subchannel=10001&fx=23
-* 长桥：https://activity.lbkrs.com/zh-CN/invite-friend/invite?type=share&invite-code=031483&channel=HM000001
-* 盈立：https://m.yxzq.com/webapp/marketing/mgm-Q4.html?Avatar=https://jy-common-prd-1257884527.cos.ap-guangzhou.myqcloud.com/avatar/iOS_avatar_518238367870038016_1610786827315.jpg&n=%e5%a4%a7%e9%93%81%e6%86%a8&invitationCode=xh4n&bizId=499&shareId=promotion&id=499#/register
+* 富途：[点击开户](https://growth1.futunn.com/common-invite/temp/61?code=28ad6a302facdf13683451eaf8315a6e&channel=535&subchannel=10001&fx=23)
+* 长桥：[点击开户](https://activity.lbkrs.com/zh-CN/invite-friend/invite?type=share&invite-code=031483&channel=HM000001)
+* 盈立：[点击开户](https://m.yxzq.com/webapp/marketing/mgm-Q4.html?Avatar=https://jy-common-prd-1257884527.cos.ap-guangzhou.myqcloud.com/avatar/iOS_avatar_518238367870038016_1610786827315.jpg&n=%e5%a4%a7%e9%93%81%e6%86%a8&invitationCode=xh4n&bizId=499&shareId=promotion&id=499#/register)
 
 使用我的链接注册并满足以下条件的，待券商验证成功后，会给予额外的奖励，直接加我微信（bigtiehanhan）领取。如果链接点击不方便，可以直接加我微信获取。
 
