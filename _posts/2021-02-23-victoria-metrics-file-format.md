@@ -14,8 +14,8 @@ tags:
 
 [VictoriaMetrics](https://github.com/VictoriaMetrics/VictoriaMetrics)是一个快速高效且可扩展的监控解决方案和时序数据库，可以作为Prometheus的长期远端存储，具备的特性有：
 
-- 支持promtheus 查询api，同时实现了一个metricsql 查询语言
-- 支持全局查询视图，好处多prometheus 实例写数据到victoriametrics，然后提供一个统一的查询
+- 支持prometheus查询api，同时实现了一个metricsql 查询语言
+- 支持全局查询视图，支持多prometheus 实例写数据到VictoriaMetrics，然后提供一个统一的查询
 - 支持集群
 - 高性能
 - 支持多种协议，包括influxdb line协议，prometheus metrics，graphite ，prometheus远端写api，opentsdb http协议等
@@ -69,19 +69,19 @@ VictoriaMetrics的根目录下主要包括4个目录或文件，如下图所示�
 数据目录data的具体结构，如下图所示，在图中使用红色文字，对主要目录或文件做了简单说明，其中最主要的是**big**目录和**small**目录，这两个目录的结构是一样的。其中，在VictoriaMetrics中，使用table来表示的数据或者索引的根目录，而实际上VictoriaMetrics中没有实际的表table级别目录。
 ![](/img/2021-02-23/data_dir.png)
 
-在small目录下，以月为单位不断生成partition目录，比如上图中的2020_11目录，对应的实现在源码partition.go中。partition目录包括part目录、临时目录tmp、 事务目录txn等三个目录。
+在small目录下，以月为单位不断生成partition目录，比如上图中的2020_11目录，对应的实现在源码lib/storage/partition.go中。partition目录包括part目录、临时目录tmp、 事务目录txn等三个目录。
 
 
-内存中的数据每刷盘一次就会生成一个part目录，如上图中的"708_354_20201103102134.255_20201103102149.255_1643F83394CA24A7"，目录名中的708表示这个目录下包含的数据行数rowsCount, 目录名中的354表示这个目录中包含的数据块数blocksCount, 20201103102134.255表示目录中包含的数据的最小时间戳，20201103102149.255表示目录中包含的数据的最大时间戳，1643F83394CA24A7是生成这个目录时的系统纳秒时间戳的16进制表示，对应的实现逻辑在源码part.go中；
+内存中的数据每刷盘一次就会生成一个part目录，如上图中的"708_354_20201103102134.255_20201103102149.255_1643F83394CA24A7"，目录名中的708表示这个目录下包含的数据行数rowsCount, 目录名中的354表示这个目录中包含的数据块数blocksCount, 20201103102134.255表示目录中包含的数据的最小时间戳，20201103102149.255表示目录中包含的数据的最大时间戳，1643F83394CA24A7是生成这个目录时的系统纳秒时间戳的16进制表示，对应的实现逻辑在源码lib/storage/part.go中；
 
 
-看到这里，可能会有一些疑问？比如为何要分成big和small目录, 或者说big目录和small中的数据关系是什么？ 这个需要从VictoriaMetrics的Compaction机制讲起。
+看到这里，可能会有一些疑问？比如为何要分成big和small目录, 或者说big目录和small中的数据关系是什么？ 这个需要从VictoriaMetrics的compaction机制讲起。
 
-在VictoriaMetrics中，small目录和big目录都会周期性检查，是否需要做part的合并。VictoriaMetrics默认每个10ms检查一次Partition目录下的part是否需要做merge。如果检查出有满足merge条件的parts，则这些parts合并为一个part。如果没有满足megre则以10ms为基进行指数休眠，最大休眠时间为10s。
+在VictoriaMetrics中，small目录和big目录都会周期性检查，是否需要做part的合并。VictoriaMetrics默认每个10ms检查一次partition目录下的part是否需要做merge。如果检查出有满足merge条件的parts，则这些parts合并为一个part。如果没有满足条件的part进行merge，则以10ms为基进行指数休眠，最大休眠时间为10s。
 
 VictoriaMetrics在写数据时，先写入在small目录下的相应partition目录下面的，small目录下的每个partition最多256个part。VictoriaMetrics在Compaction时，默认一次最多合并15个part，且small目录下的part最多包含1000W行数据，即1000W个数据点。因此，当一次待合并的parts中包含的行数超过1000W行时，其合并的输出路径为big目录下的同名partition目录下。
 
-因此，big目录下的数据由samll目录下的数据在后台compaction时合并生成的。 那么为什么要分成big目录和small目录呢？ 
+因此，big目录下的数据由small目录下的数据在后台compaction时合并生成的。 那么为什么要分成big目录和small目录呢？ 
 
 这个主要是从磁盘空间占用上来考虑的。时序数据经常读取最近写入的数据，较少读历史数据。而且，时序数据的数据量比较大，通常会使用压缩算法进行压缩。
 
@@ -92,7 +92,7 @@ VictoriaMetrics在写数据时，先写入在small目录下的相应partition目
 
 
 ### 索引目录
-索引目录indexdb的具体结构，如下图所示，在图中使用红色文字，对主要目录或文件做了简单说明。与数据目录不同的是，indexdb目录下又多个table目录，每个table目录代表一个完整的自治的索引，每个table目录下，又有多个不同的part目录，part命名方式比较简单，有文件包含的item数itemsCount和block数blocksCount, 以及根据系统纳秒时间戳自增生成的mergeIdx的16进制表示。
+索引目录indexdb的具体结构，如下图所示，在图中使用红色文字，对主要目录或文件做了简单说明。与数据目录不同的是，indexdb目录下由多个table目录，每个table目录代表一个完整的自治的索引，每个table目录下，又有多个不同的part目录，part命名方式比较简单，有文件包含的item数itemsCount和block数blocksCount, 以及根据系统纳秒时间戳自增生成的mergeIdx的16进制表示。
 ![](/img/2021-02-23/index_dir.png)
 
 indexdb下面的形如"1643F4F397B53DEE"是怎么生成的，或者什么时候切换新的目录写索引的呢？VictoriaMetrics会根据用户设置的数据保留周期retention来定期滚动索引目录，当前一个索引目录的保留时间到了，就会切换一个新的目录，重新生成索引。
@@ -102,7 +102,7 @@ indexdb下面的形如"1643F4F397B53DEE"是怎么生成的，或者什么时候�
 
 在介绍具体的文件格式之前，不得不提下VictoriaMetrics对于写入数据的处理过程。下图是VictoriaMetrics支持的Prometheus协议的一个写入示例。
 ![](/img/2021-02-23/write_demo.png)
-VictoriaMetrics在接受到写入请求时，会对请求中包含的时序数据做转换处理，如下图所示。首先先根据包含metric和labels的MetricNameRaw生成一个唯一标识TSID，然后metric + labels + TSID作为索引index， TSID + timestamp + value作为数据data，最后索引index和数据data分别进行存储和检索。
+VictoriaMetrics在接受到写入请求时，会对请求中包含的时序数据做转换处理，如下图所示。首先先根据包含metric和labels的MetricName生成一个唯一标识TSID，然后metric + labels + TSID作为索引index， TSID + timestamp + value作为数据data，最后索引index和数据data分别进行存储和检索。
 
 ![](/img/2021-02-23/write_process.png)
 因此，VictoriaMetrics的数据整体上分成索引和数据两个部分，因此文件格式整体上会有两个部分。其中，索引部分主要是用于支持按照label或者tag进行多维检索。与大多数时序数据库的数据组织方式一样，比如InfluxDB、Prometheus、OpenTSDB等，VictoriaMetrics也是按时间线来组织数据的，即数据存储时，先将数据按TSID进行分组，然后每个TSID的包含的数据点各自使用列式压缩存储。
